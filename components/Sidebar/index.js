@@ -11,7 +11,7 @@ import CodeIcon from '@mui/icons-material/Code';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import LanguageIcon from '@mui/icons-material/Language';
 import DevicesIcon from '@mui/icons-material/Devices';
-
+import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
 
 const sidebarLinks = [
     {
@@ -39,17 +39,17 @@ const sidebarLinks = [
         group: 'MENU',
     },
     {
+        title: 'Website Setup',
+        icon: <DevicesIcon />,
+        path: '#',
+        group: 'TOOLS',
+    },
+    {
         title: 'Image Scaler',
         icon: <AddPhotoAlternateIcon />,
         path: 'https://image-scaler-sigma.vercel.app/',
         group: 'TOOLS',
         targetBlank: true,
-    },
-    {
-        title: 'Website Automation',
-        icon: <DevicesIcon />,
-        path: '#',
-        group: 'TOOLS',
     },
     {
         title: 'SEO Checker',
@@ -58,10 +58,10 @@ const sidebarLinks = [
         group: 'TOOLS',
     },
     {
-        title: 'Systems Training',
-        icon: <LanguageIcon />,
-        path: '#',
-        group: 'OTHERS',
+        title: 'Team Training',
+        icon: <VideoLibraryIcon />,
+        path: '/dashboard/team-training',
+        group: 'MENU',
     },
 ];
 

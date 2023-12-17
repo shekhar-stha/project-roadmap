@@ -1,4 +1,4 @@
-import DevProfileCard from '@/components/Profile/DevProfileCard'
+import ProfileCard from '@/components/Profile/ProfileCard';
 import React from 'react'
 
 export default function page() {
@@ -6,32 +6,31 @@ export default function page() {
     {
       name: 'Shekhar Shresha',
       role: 'Lead Developer',
-      currentProject: 'Escobar Landscaping',
-      assignedProjects: 'Richards Lawn Care, Ropers Fashions, NELO Landscaping',
-      projectsToReview: 'Richards Lawn Care',
+      listOneData: 'Escobar Landscaping',
+      listTwoData: 'Richards Lawn Care, Ropers Fashions, NELO Landscaping',
       imageUrl: '/shekhar-profile.jpg',
     },
     {
       name: 'Rojan Shresha',
       role: 'Junior Developer',
-      currentProject: 'Richards Landscaping',
-      assignedProjects: 'Richards Lawn Care, Ropers Fashions, NELO Landscaping',
-      projectsToReview: 'Richards Lawn Care',
+      listOneData: 'Escobar Landscaping',
+      listTwoData: 'Richards Lawn Care, Ropers Fashions, NELO Landscaping',
       imageUrl: '/shekhar-profile.jpg',
     },
   ];
   return (
     <>
-      <h1 className='text-3xl font-medium mb-6 text-black dark:text-white'>Developers</h1>
-      <div class="grid grid-cols-1 gap-x-6 gap-y-8 md:grid-cols-2 lg:grid-cols-2 xl:gap-x-8">
+      <h1 className='header'>Developers</h1>
+      <div class="two-col-grid">
         {profiles.map((profile, index) => (
-          <DevProfileCard
+          <ProfileCard
             key={index}
             name={profile.name}
             role={profile.role}
-            currentProject={profile.currentProject}
-            assignedProjects={profile.assignedProjects}
-            projectsToReview={profile.projectsToReview}
+            listOneTitle="Working on:"
+            listOneData={profile.listOneData}
+            listTwoTitle="Assigned Projects:"
+            listTwoData={profile.listTwoData}
             imageUrl={profile.imageUrl}
           />
         ))}

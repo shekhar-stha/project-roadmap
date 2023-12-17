@@ -1,3 +1,4 @@
+import Link from "next/link";
 
 export default function Home() {
 
@@ -6,6 +7,10 @@ export default function Home() {
       <h1 className="text-xl font-bold underline">
         Project Roadmap
       </h1>
+
+      <Link href="/dashboard">
+        Dashboard
+        </Link> 
     </main>
   )
 }

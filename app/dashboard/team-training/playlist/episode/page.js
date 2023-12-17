@@ -86,7 +86,7 @@ export default function page() {
             </div>
           </div>
           <div className='xl:w-[23%] w-full'>
-            <h3 className='text-2xl font-medium'>Related Videos</h3>
+            <h3 className='text-2xl font-medium text-black dark:text-white'>Related Videos</h3>
             <div className=' flex flex-col gap-y-4 mt-6'>
               {mockupData.map((video, index) => (
                 <VideoHorizontalCard
@@ -100,7 +100,7 @@ export default function page() {
               ))}
             </div>
 
-            <h3 className='text-2xl font-medium mt-8'>Other Videos</h3>
+            <h3 className='text-2xl font-medium mt-8 text-black dark:text-white'>Other Videos</h3>
             <div className=' flex flex-col gap-y-4 mt-6'>
               {mockupData.map((video, index) => (
                 <VideoHorizontalCard

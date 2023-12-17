@@ -26,7 +26,7 @@ export default function VideoHorizontalCard({ href, thumbnailSrc, title, playlis
                     }
                 </div>
             </div>
-            <h3 class="mt-4 text-base font-medium text-gray-700 line-clamp-2 text-black dark:text-white">{title}</h3>
+            <h3 class="text-base font-medium text-gray-700 xl:line-clamp-3 line-clamp-2 text-black dark:text-white">{title}</h3>
             <p class="mt-1 text-sm font-small text-gray-900 xl:line-clamp-1 line-clamp-2 text-black dark:text-white">{subData}</p>
         </Link>
     );

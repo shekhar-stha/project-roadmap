@@ -22,7 +22,7 @@ const mockupData = [
 export default function Page() {
   return (
     <div class="dark:bg-boxdark-2 dark:text-bodydark">
-      <h2 className='text-3xl font-medium mb-6 text-black dark:text-white'>Training Materials</h2>
+      <h2 className='header'>Training Materials</h2>
 
       <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
         {mockupData.map((video, index) => (

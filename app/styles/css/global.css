@@ -15,3 +15,11 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
+
+.header {
+@apply text-3xl font-medium mb-6 text-black dark:text-white
+}
+
+.two-col-grid{
+  @apply grid grid-cols-1 gap-x-6 gap-y-8 md:grid-cols-2 lg:grid-cols-2 xl:gap-x-8
+}

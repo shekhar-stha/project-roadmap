@@ -1,9 +1,9 @@
 import { Inter } from 'next/font/google'
-
+import { ToastContainer, toast } from 'react-toastify';
 import './styles/css/global.css';
 import './styles/scss/_global.scss';
 
-const inter = Inter({ subsets: ['latin'] })
+import 'poppins'
 
 export const metadata = {
   title: 'Project Roadmap',
@@ -14,6 +14,18 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>{children}</body>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </html>
   )
 }

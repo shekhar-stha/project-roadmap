@@ -10,7 +10,7 @@ export default function Home() {
 
       <Link href="/dashboard">
         Dashboard
-        </Link> 
+      </Link>
     </main>
   )
 }

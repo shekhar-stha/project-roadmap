@@ -6,15 +6,13 @@ import EditNoteIcon from '@mui/icons-material/EditNote';
 export default function ProjectCard() {
     return (
         <div className='profile-card relative w-full rounded-lg py-6 px-8 shadow-3 dark:border-strokedark dark:bg-boxdark'>
-            <h5 className='text-3xl font-medium text-dark dark:text-white mb-2'>Escobar Landscaping and Lawn Care</h5>
+            <h5 className='text-3xl font-medium text-dark dark:text-white mb-2 line-clamp-2'>Escobar Landscaping and Lawn Care</h5>
 
             <PointAnswers className='mb-2' title='Project Type:' data='Landscaping' />
 
             <PointAnswers className='mb-2' title='Project Status:' data='In Progress' />
 
-            <PointAnswers className='mb-2' title=' Assigned to:' data='Shekhar Shrestha' />
-
-            <PointAnswers className='mb-5' title=' Assigned by:' data='Jeremiah Kingston' />
+            <PointAnswers className='mb-5' title=' Assigned to:' data='Shekhar Shrestha' />
 
             <div className='flex gap-x-3 '>
                 <Link
@@ -24,7 +22,7 @@ export default function ProjectCard() {
                 </Link>
 
                 <Link
-                    className=" rounded bg-secondary py-2 px-5 font-medium text-boxdark"
+                    className=" rounded border-2 border-primary py-2 px-5 font-medium text-primary"
                     href='/dashboard/projects/edit'>
                     Edit Detail
                 </Link>

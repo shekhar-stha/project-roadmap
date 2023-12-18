@@ -1,40 +1,53 @@
 import ProfileCard from '@/components/Profile/ProfileCard';
-import React from 'react'
+import Link from 'next/link';
+import React from 'react';
 
-export default function page() {
+export default function Page() {
   const profiles = [
     {
       name: 'Shekhar Shresha',
       role: 'Lead Developer',
-      listOneData: 'Escobar Landscaping',
-      listTwoData: 'Richards Lawn Care, Ropers Fashions, NELO Landscaping',
+      href: '/dashboard/developers/detail',
+      lists: [
+        { title: 'Working on', data: 'Escobar Landscaping' },
+        { title: 'Assigned Projects', data: 'Richards Lawn Care, Ropers Fashions, NELO Landscaping' },
+      ],
       imageUrl: '/shekhar-profile.jpg',
     },
     {
       name: 'Rojan Shresha',
       role: 'Junior Developer',
-      listOneData: 'Escobar Landscaping',
-      listTwoData: 'Richards Lawn Care, Ropers Fashions, NELO Landscaping',
+      href: '/dashboard/developers/detail',
+      lists: [
+        { title: 'Working on', data: 'Escobar Landscaping' },
+        { title: 'Assigned Projects', data: 'Richards Lawn Care, Ropers Fashions, NELO Landscaping' },
+      ],
       imageUrl: '/shekhar-profile.jpg',
     },
   ];
+
   return (
     <>
-      <h1 className='header'>Developers</h1>
-      <div class="two-col-grid">
+      <div className='flex justify-between align-middle mb-3'>
+        <h1 className='header'>Developers</h1>
+        <div>
+          <Link className='rounded bg-primary py-3 px-6 text-lg font-medium text-gray' href='/dashboard/developers/create'>
+            Add Developer
+          </Link>
+        </div>
+      </div>
+      <div className="two-col-grid">
         {profiles.map((profile, index) => (
           <ProfileCard
             key={index}
             name={profile.name}
             role={profile.role}
-            listOneTitle="Working on:"
-            listOneData={profile.listOneData}
-            listTwoTitle="Assigned Projects:"
-            listTwoData={profile.listTwoData}
+            href={profile.href}
             imageUrl={profile.imageUrl}
+            lists={profile.lists}
           />
         ))}
       </div>
     </>
-  )
+  );
 }

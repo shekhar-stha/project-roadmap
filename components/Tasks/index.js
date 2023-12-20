@@ -76,7 +76,7 @@ export default function Tasks() {
       };
     return (
         <div className='flex overflow-x-auto'>
-            <div className='to-do w-72 me-5'>
+            <div className='to-do me-5'>
                 {/* Header */}
                 <div className='w-full flex items-center justify-center gap-3 dark:bg-boxdark shadow-6 border border-[#c7c6c6] dark:border-none py-2 rounded-lg'>
                     <h1 className='text-xl  font-semibold'>To Do</h1>
@@ -104,7 +104,7 @@ export default function Tasks() {
 
             </div>
 
-            <div className='in-progress w-72 me-5'>
+            <div className='in-progress me-5'>
                 {/* Header */}
                 <div className='w-full flex items-center justify-center gap-3 dark:bg-boxdark shadow-6 border border-[#c7c6c6] dark:border-none py-2 rounded-lg'>
                     <h1 className='text-xl font-semibold'>In Progress</h1>
@@ -128,7 +128,7 @@ export default function Tasks() {
                 }
             </div>
 
-            <div className='completed w-72 me-5'>
+            <div className='completed me-5'>
                 {/* Header */}
                 <div className='w-full flex items-center justify-center gap-3 dark:bg-boxdark shadow-6 border border-[#c7c6c6] dark:border-none py-2 rounded-lg'>
                     <h1 className='text-xl font-semibold'>Completed</h1>

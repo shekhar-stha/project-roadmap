@@ -29,10 +29,10 @@ export default function ProfileCard({ name, role, imageUrl, href, lists, mailBtn
                 ))}
 
                 {mailBtn && (
-                    <div className='mt-5'>
-                        <button onClick={openModal} className='px-6 rounded bg-primary p-3 font-medium text-gray'>
+                    <div className='mt-7'>
+                        <Link href="/messages/detail" className='px-6 rounded bg-primary p-3 font-medium text-gray'>
                             Send Message
-                        </button>
+                        </Link>
                     </div>
                 )}
 

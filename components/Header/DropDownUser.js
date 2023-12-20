@@ -76,16 +76,7 @@ const DropdownUser = () => {
                 <ul className="flex flex-col gap-5 border-b border-stroke px-6 py-7.5 dark:border-strokedark">
                     <li>
                         <Link
-                            href="/profile"
-                            className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
-                        >
-                            <PermIdentityIcon />
-                            My Profile
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            href="/pages/settings"
+                            href="/dashboard/settings"
                             className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
                         >
                            <SettingsIcon />
@@ -93,11 +84,11 @@ const DropdownUser = () => {
                         </Link>
                     </li>
                 </ul>
-                <button className="flex items-center gap-3.5 py-4 px-6 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
+                <Link href="/login" className="flex items-center gap-3.5 py-4 px-6 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
                     
                     <LogoutIcon />
                     Log Out
-                </button>
+                </Link>
             </div>
             {/* <!-- Dropdown End --> */}
         </div>

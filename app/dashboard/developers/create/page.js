@@ -25,7 +25,7 @@ export default function Page() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        toast.success('Project Added Successfully', {
+        toast.success('Added Successfully', {
             position: 'bottom-right',
             autoClose: 5000,
             hideProgressBar: false,

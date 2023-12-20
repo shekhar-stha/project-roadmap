@@ -5,6 +5,10 @@ import WebhookIcon from '@mui/icons-material/Webhook';
 import ProjectCard from '@/components/Projects/ProjectCard';
 import AnnouncementCard from '@/components/common/AnnouncementCard';
 import Tasks from '@/components/Tasks';
+import MessageIcon from '@mui/icons-material/Message';
+import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
+import CampaignIcon from '@mui/icons-material/Campaign';
+
 export default function page() {
   const announcementData = [
     {
@@ -31,15 +35,15 @@ export default function page() {
         </CardDataStats>
 
         <CardDataStats title="Messages" total="12">
-          <WebhookIcon className='fill-primary dark:fill-white' />
+          <MessageIcon className='fill-primary dark:fill-white' />
         </CardDataStats>
 
         <CardDataStats title="Tasks" total="45">
-          <WebhookIcon className='fill-primary dark:fill-white' />
+          <PlaylistAddIcon className='fill-primary dark:fill-white' />
         </CardDataStats>
 
         <CardDataStats title="Announcements" total="9">
-          <WebhookIcon className='fill-primary dark:fill-white' />
+          <CampaignIcon className='fill-primary dark:fill-white' />
         </CardDataStats>
       </div>
 

@@ -44,6 +44,15 @@ export default function page() {
       </div>
 
       <div className='my-9'>
+        <h2 className="header">Current Projects</h2>
+        <div className="two-col-grid">
+          <ProjectCard />
+
+          <ProjectCard />
+        </div>
+      </div>
+
+      <div className='my-9'>
         <Tasks />
       </div>
 
@@ -61,15 +70,6 @@ export default function page() {
             imageUrl={announcement.imageUrl
             } />
         ))}
-      </div>
-
-      <div className='my-9'>
-        <h2 className="header">Current Projects</h2>
-        <div className="two-col-grid">
-          <ProjectCard />
-
-          <ProjectCard />
-        </div>
       </div>
     </>
 

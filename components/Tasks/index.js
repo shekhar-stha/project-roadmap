@@ -39,10 +39,26 @@ export default function Tasks() {
           title: 'Deployment to Production',
           description: 'Deploy the application to the production server and monitor for any issues.',
           url: 'https://www.example.com/deployment',
-          projectStatus: 'completed',
+          projectStatus: 'in-progress',
           dueDate: 'Dec 23, 2023',
           assignedDate: 'Dec 12, 2023',
         },
+        {
+            title: 'Implement User Authentication',
+            description: 'Integrate user authentication features to ensure secure access to the application.',
+            url: 'https://www.example.com/user-authentication',
+            projectStatus: 'to-do',
+            dueDate: 'Dec 18, 2023',
+            assignedDate: 'Dec 07, 2023',
+          },
+          {
+            title: 'Deployment to Production',
+            description: 'Deploy the application to the production server and monitor for any issues.',
+            url: 'https://www.example.com/deployment',
+            projectStatus: 'in-progress',
+            dueDate: 'Dec 23, 2023',
+            assignedDate: 'Dec 12, 2023',
+          },
       ];
       
 
@@ -86,6 +102,30 @@ export default function Tasks() {
                     ))
                 }
 
+            </div>
+
+            <div className='in-progress w-72 me-5'>
+                {/* Header */}
+                <div className='w-full flex items-center justify-center gap-3 dark:bg-boxdark shadow-6 border border-[#c7c6c6] dark:border-none py-2 rounded-lg'>
+                    <h1 className='text-xl font-semibold'>In Progress</h1>
+                </div>
+
+                 {/* Tasks */}
+                 {
+                    tasks.map((task, index) => (
+                        task.projectStatus === 'in-progress' && (
+                            <TaskCard
+                                key={index}
+                                title={task.title}
+                                description={task.description}
+                                url={task.url}
+                                projectStatus={task.projectStatus}
+                                dueDate={task.dueDate}
+                                assignedDate={task.assignedDate}
+                            />
+                        )
+                    ))
+                }
             </div>
 
             <div className='completed w-72 me-5'>

@@ -57,7 +57,7 @@ export default function Page() {
                         type="submit"
                         className="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray"
                     >
-                        Add Developer
+                        Post Announcement
                     </button>
                 </div>
 

@@ -1,12 +1,12 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-export default function FormField({ label, type, placeholder, selectOptions, radioOptions, value, onChange, className }) {
+export default function FormField({ label, type, placeholder, selectOptions, radioOptions, value, onChange, className, notRequired }) {
     return (
         <div className={`mb-4.5 ${className ? className : ""}`}>
             {
                 label && (
                     <label className="mb-2.5 block text-black dark:text-white">
-                        {label} <span className="text-meta-1">*</span>
+                        {label}{notRequired ? null : <span className="text-meta-1">*</span>}
                     </label>
                 )
             }

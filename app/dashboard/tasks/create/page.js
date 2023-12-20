@@ -90,16 +90,17 @@ export default function Page() {
 
             <FormField
               label="Project"
-              type="select"
-              selectOptions={projectType}
+              type="text"
+              placeholder="Enter for which project this is for"
               value={formValues.projectType}
               onChange={(value) => setFormValues({ ...formValues, projectType: value })}
+              notRequired
             />
 
             <FormField
               label="Assigned to"
-              type="select"
-              selectOptions={assignedTo}
+              type="text"
+              placeholder="Enter who is assigned to this task"
               value={formValues.assignedTo}
               onChange={(value) => setFormValues({ ...formValues, assignedTo: value })}
             />

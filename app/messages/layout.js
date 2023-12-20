@@ -34,8 +34,8 @@ function RootLayout({ children }) {
                 {/* <!-- ===== Header End ===== --> */}
 
                 {/* <!-- ===== Main Content Start ===== --> */}
-                <main>
-                  <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
+                <main className="h-full">
+                  <div className="mx-auto h-full">
                     {children}
                   </div>
                 </main>

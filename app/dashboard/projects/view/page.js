@@ -18,7 +18,14 @@ import Tasks from '@/components/Tasks';
 
 export default function Page() {
     const commentFile = useRef();
-
+    const currentDate = new Date();
+    const formattedDate = currentDate.toLocaleString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true,
+    });
     const [uploadedFiles, setUploadedFiles] = useState([]);
 
     const handleFileChange = (e) => {
@@ -33,7 +40,7 @@ export default function Page() {
     const [comments, setComments] = useState([
         {
             userName: "Shekhar Shrestha",
-            date: "Dec 17 at 10:35PM",
+            date: formattedDate,
             text: "Hey, I have completed the task. Please review it.",
             imageUrl: "/shekhar-profile.jpg",
             files: []
@@ -42,15 +49,6 @@ export default function Page() {
 
     const handleCommentSubmit = (e) => {
         e.preventDefault();
-
-        const currentDate = new Date();
-        const formattedDate = currentDate.toLocaleString('en-US', {
-            month: 'short',
-            day: 'numeric',
-            hour: 'numeric',
-            minute: 'numeric',
-            hour12: true,
-        });
 
         const newComment = {
             userName: "Jeremiah Kingston",
@@ -72,7 +70,7 @@ export default function Page() {
         console.log(files, "uploaded fle")
         const newComment = {
             userName: "Jeremiah Kingston",
-            date: "Dec 17 at 10:35PM",
+            date: formattedDate,
             text: commentValues.comment,
             imageUrl: "/shekhar-profile.jpg",
             files: files,

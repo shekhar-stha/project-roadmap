@@ -17,70 +17,6 @@ import ChecklistRtlIcon from '@mui/icons-material/ChecklistRtl';
 import DarkMessageBox from "../Message/DarkMessageBox";
 import MessageBox from "../Message/MessageBox";
 
-const sidebarLinks = [
-    {
-        title: 'Dashboard',
-        icon: <GridViewIcon />,
-        path: '/dashboard',
-        group: 'MENU',
-    },
-    {
-        title: 'Projects',
-        icon: <AssignmentIcon />,
-        path: '/dashboard/projects',
-        group: 'MENU',
-    },
-    {
-        title: 'Tasks',
-        icon: <ChecklistRtlIcon />,
-        path: '/dashboard/tasks',
-        group: 'MENU',
-    },
-    {
-        title: 'Announcements',
-        icon: <CampaignIcon />,
-        path: '/dashboard/announcements',
-        group: 'MENU',
-    },
-    {
-        title: 'Developers',
-        icon: <CodeIcon />,
-        path: '/dashboard/developers',
-        group: 'MENU',
-    },
-    {
-        title: 'Support Assistant',
-        icon: <SupportAgentIcon />,
-        path: '/dashboard/support-assistant',
-        group: 'MENU',
-    },
-    {
-        title: 'Team Training',
-        icon: <VideoLibraryIcon />,
-        path: '/dashboard/team-training',
-        group: 'MENU',
-    },
-    {
-        title: 'Website Setup',
-        icon: <DevicesIcon />,
-        path: '#',
-        group: 'TOOLS',
-    },
-    {
-        title: 'Image Scaler',
-        icon: <AddPhotoAlternateIcon />,
-        path: 'https://image-scaler-sigma.vercel.app/',
-        group: 'TOOLS',
-        targetBlank: true,
-    },
-    {
-        title: 'SEO Checker',
-        icon: <LanguageIcon />,
-        path: '#',
-        group: 'TOOLS',
-    },
-];
-
 const MessageSidebar = ({ sidebarOpen, setSidebarOpen }) => {
     const pathname = usePathname();
 
@@ -135,7 +71,7 @@ const MessageSidebar = ({ sidebarOpen, setSidebarOpen }) => {
             message: 'I like your confidence 💪',
             time: '2 min ago',
             imageSrc: '/shekhar-profile.jpg',
-            href: '/messages',
+            href: '/messages/detail',
             seen: true
         },
         {
@@ -143,7 +79,7 @@ const MessageSidebar = ({ sidebarOpen, setSidebarOpen }) => {
             message: 'Can you share your offer?',
             time: '10 min ago',
             imageSrc: '/shekhar-profile.jpg',
-            href: '/messages',
+            href: '/messages/detail',
             seen: false,
         },
         {
@@ -151,7 +87,7 @@ const MessageSidebar = ({ sidebarOpen, setSidebarOpen }) => {
             message: 'I came across your profile and...',
             time: '1 day ago',
             imageSrc: '/shekhar-profile.jpg',
-            href: '/messages',
+            href: '/messages/detail',
             seen: false,
         },
         {
@@ -159,7 +95,7 @@ const MessageSidebar = ({ sidebarOpen, setSidebarOpen }) => {
             message: 'I’m waiting for your response!',
             time: '5days ago',
             imageSrc: '/shekhar-profile.jpg',
-            href: '/messages',
+            href: '/messages/detail',
             seen: true,
         },
     ];
@@ -172,7 +108,7 @@ const MessageSidebar = ({ sidebarOpen, setSidebarOpen }) => {
         >
             {/* <!-- SIDEBAR HEADER --> */}
             <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
-                <Link className="flex items-center gap-x-2"  href="/dashboard">
+                <Link className="flex items-center gap-x-2" href="/dashboard">
                     <Image
                         width={60}
                         height={32}
@@ -180,8 +116,8 @@ const MessageSidebar = ({ sidebarOpen, setSidebarOpen }) => {
                         alt="Logo"
                     />
                     <div>
-                    <h3 className="text-4xl font-bold mb-1 text-black italic dark:text-white">ZappySites</h3>
-                    <p className="text-[12px] font-semibold dark:text-white">Powerful websites for small business</p>
+                        <h3 className="text-4xl font-bold mb-1 text-black italic dark:text-white">ZappySites</h3>
+                        <p className="text-[12px] font-semibold dark:text-white">Dashboard</p>
                     </div>
                 </Link>
 
@@ -199,8 +135,12 @@ const MessageSidebar = ({ sidebarOpen, setSidebarOpen }) => {
 
             <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
 
-                <nav className="mt-5 py-4 px-4 lg:mt-9 lg:px-6">
-                    <h3>Chats</h3>
+                <nav className=" py-4 px-4 lg:px-6">
+                    <Link href="/dashboard" className="dark:bg-black bg-stroke  rounded-md px-4 py-2 flex gap-2 items-center">
+                        <ArrowBackIcon />
+                        Back to main dashboard
+                    </Link>
+                    <h3 className="text-4xl mt-6 font-semibold  dark:text-white mb-5">Chats</h3>
 
                     <ul className="flex h-auto flex-col overflow-y-auto">
                         {messageData.map((message, index) => (

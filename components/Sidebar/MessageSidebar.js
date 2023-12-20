@@ -14,6 +14,8 @@ import DevicesIcon from '@mui/icons-material/Devices';
 import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
 import CampaignIcon from '@mui/icons-material/Campaign';
 import ChecklistRtlIcon from '@mui/icons-material/ChecklistRtl';
+import DarkMessageBox from "../Message/DarkMessageBox";
+import MessageBox from "../Message/MessageBox";
 
 const sidebarLinks = [
     {
@@ -79,7 +81,7 @@ const sidebarLinks = [
     },
 ];
 
-const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
+const MessageSidebar = ({ sidebarOpen, setSidebarOpen }) => {
     const pathname = usePathname();
 
     const trigger = useRef(null);
@@ -127,21 +129,60 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
         }
     }, [sidebarExpanded]);
 
+    const messageData = [
+        {
+            name: 'Mariya Desoja',
+            message: 'I like your confidence 💪',
+            time: '2 min ago',
+            imageSrc: '/shekhar-profile.jpg',
+            href: '/messages',
+            seen: true
+        },
+        {
+            name: 'Robert Jhon',
+            message: 'Can you share your offer?',
+            time: '10 min ago',
+            imageSrc: '/shekhar-profile.jpg',
+            href: '/messages',
+            seen: false,
+        },
+        {
+            name: 'Henry Dholi',
+            message: 'I came across your profile and...',
+            time: '1 day ago',
+            imageSrc: '/shekhar-profile.jpg',
+            href: '/messages',
+            seen: false,
+        },
+        {
+            name: 'Cody Fisher',
+            message: 'I’m waiting for your response!',
+            time: '5days ago',
+            imageSrc: '/shekhar-profile.jpg',
+            href: '/messages',
+            seen: true,
+        },
+    ];
+
     return (
         <aside
             ref={sidebar}
-            className={`absolute left-0 top-0 z-40 flex h-screen w-72.5 flex-col overflow-y-hidden bg-black duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
+            className={`absolute left-0 top-0 z-40 flex h-screen w-90 flex-col overflow-y-hidden bg-white shadow-6 duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
                 }`}
         >
             {/* <!-- SIDEBAR HEADER --> */}
             <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
-                <Link href="/dashboard">
+                <Link className="flex items-center gap-x-2"  href="/dashboard">
                     <Image
-                        width={230}
+                        width={60}
                         height={32}
-                        src="/logo-full-white.png"
+                        src="/logo.png"
                         alt="Logo"
                     />
+                    <div>
+                    <h3 className="text-4xl font-bold mb-1 text-black italic ">ZappySites</h3>
+                    <p className="text-[12px] font-semibold">Powerful websites for small business</p>
+                    </div>
                 </Link>
 
                 {/* Mobile Button */}
@@ -159,32 +200,17 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
             <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
 
                 <nav className="mt-5 py-4 px-4 lg:mt-9 lg:px-6">
-                    {Array.from(new Set(sidebarLinks.map((link) => link.group))).map((group) => (
-                        <div key={group}>
-                            <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark2">{group}</h3>
-                            <ul className="mb-6 flex flex-col gap-1.5">
-                                {sidebarLinks
-                                    .filter((link) => link.group === group)
-                                    .map((link, index) => (
-                                        <Link
-                                            key={index}
-                                            href={link.path}
-                                            className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${(link.path === pathname) ||
-                                                (pathname.includes(link.path) && link.path !== '/dashboard')
-                                                ? "bg-graydark dark:bg-meta-4" : ""}`}
-                                            target={link.targetBlank ? "_blank" : undefined}
-                                        >
-                                            {link.icon}
-                                            {link.title}
-                                        </Link>
-                                    ))}
-                            </ul>
-                        </div>
-                    ))}
+                    <h3>Chats</h3>
+
+                    <ul className="flex h-auto flex-col overflow-y-auto">
+                        {messageData.map((message, index) => (
+                            <MessageBox key={index} message={message} />
+                        ))}
+                    </ul>
                 </nav>
             </div>
         </aside>
     );
 };
 
-export default Sidebar;
+export default MessageSidebar;

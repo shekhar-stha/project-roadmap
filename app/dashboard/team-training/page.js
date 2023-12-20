@@ -21,10 +21,10 @@ const mockupData = [
 
 export default function Page() {
   return (
-    <div class="dark:bg-boxdark-2 dark:text-bodydark">
+    <div className="dark:bg-boxdark-2 dark:text-bodydark">
       <h2 className='header'>Training Materials</h2>
 
-      <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+      <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
         {mockupData.map((video, index) => (
           <VideoCard
             key={index}

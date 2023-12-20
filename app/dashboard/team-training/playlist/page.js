@@ -67,13 +67,13 @@ const mockupData = [
 
 export default function page() {
   return (
-    <div class="dark:bg-boxdark-2 dark:text-bodydark">
-    <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+    <div className="dark:bg-boxdark-2 dark:text-bodydark">
+    <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
       <h2 className='text-3xl font-medium mb-6 text-black dark:text-white'>
          Nifty Essential Training for Absolute Beginners
          </h2>
 
-      <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+      <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
         {mockupData.map((video, index) => (
           <VideoCard
             key={index}

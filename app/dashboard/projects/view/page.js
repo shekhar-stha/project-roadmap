@@ -14,6 +14,7 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import Image from 'next/image';
 import Comment from '@/components/common/Comment';
 import Link from 'next/link';
+import Tasks from '@/components/Tasks';
 
 export default function Page() {
     const commentFile = useRef();
@@ -108,6 +109,12 @@ export default function Page() {
                 <PointAnswers className='mb-2' title='Nifty Link:' data='https:' />
             </Panel>
 
+            {/* Tasks */}
+            <div className="my-4 px-5">
+                <h2 className="header">Tasks</h2>
+                <Tasks />
+            </div>
+
             {/* Files Section */}
             <Panel className="my-4">
                 <h2 className="header">Files</h2>
@@ -139,7 +146,7 @@ export default function Page() {
 
                 <form onSubmit={handleCommentSubmit}>
                     <div className="relative flex">
-                        <div onClick={commentFileUploadTrigger} class="cursor-pointer absolute inset-y-0 start-0 flex items-center ps-3.5">
+                        <div onClick={commentFileUploadTrigger} className="cursor-pointer absolute inset-y-0 start-0 flex items-center ps-3.5">
                             <CloudUploadIcon className='text-[#5d5d5e] dark:text-[#64748b]' />
                         </div>
 

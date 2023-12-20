@@ -15,7 +15,7 @@ export default function page() {
         </div>
       </div>
 
-      <div class="two-col-grid">
+      <div className="two-col-grid">
         <ProjectCard />
 
         <ProjectCard />

@@ -69,7 +69,7 @@ export default function page() {
       </div>
 
       {/* Chat Body */}
-      <ChatBody messages={chatMessages} />
+      <ChatBody img={endUser?.imageSrc} messages={chatMessages} />
 
       {/* Chat Inputs */}
       <div className='sticky bottom-0 bg-white dark:bg-boxdark-2 px-5 py-6'>
@@ -91,7 +91,7 @@ export default function page() {
   )
 }
 
-const ChatBody = ({ messages }) => {
+const ChatBody = ({ messages, img }) => {
   return (
     <div className='px-5 py-10 flex flex-col flex-auto justify-end'>
       {messages.map((msg, index) => (
@@ -103,7 +103,7 @@ const ChatBody = ({ messages }) => {
                   width={112}
                   height={112}
                   className="rounded-full h-10 w-10"
-                  src='/jeremiah-profile.jpg'
+                  src={img}
                   alt="User"
                 />
               </div>

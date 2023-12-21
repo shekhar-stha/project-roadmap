@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client"
 import React, { useState } from 'react';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -12,9 +13,11 @@ import TurnedInNotIcon from '@mui/icons-material/TurnedInNot';
 import Link from 'next/link';
 import Panel from '@/components/Panel';
 import DownloadIcon from '@mui/icons-material/Download';
+import Slideover from '@/components/ui/Slideover';
 
 export default function Page() {
   const [open, setOpen] = useState(false)
+  const [slideoverOpen, setSlideoverOpen] = useState(false);
   const [showModal, setShowModal] = React.useState(false);
 
   const [formValues, setFormValues] = useState({
@@ -76,6 +79,7 @@ export default function Page() {
 
       setTasks(newTasks);
       setShowModal(false);
+
       toast.success('Template loaded successfully', {
         position: 'bottom-right',
         autoClose: 5000,
@@ -145,7 +149,7 @@ export default function Page() {
   };
 
   const handleDivClick = () => {
-    setOpen(true);
+    setSlideoverOpen(true);
   };
 
   return (
@@ -303,103 +307,45 @@ export default function Page() {
       ) : null}
 
       {/* Slide Overs */}
-      <Transition.Root show={open} as={Fragment}>
-        <Dialog as="div" className="relative z-50" onClose={setOpen}>
-          <Transition.Child
-            as={Fragment}
-            enter="ease-in-out duration-500"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in-out duration-500"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
+      <Slideover open={slideoverOpen} setOpen={setSlideoverOpen}>
+        <Dialog.Title className="text-2xl mb-6 mt-5 font-semibold dark:text-white leading-6 text-gray-900">
+          Create New Template
+        </Dialog.Title>
+        <form className='flex gap-1 items-center'>
+          <FormField
+            className={'w-full'}
+            label="New Template"
+            type="text"
+            placeholder="New Template Name"
+            value={formValues.projectName}
+            onChange={(value) => setFormValues({ ...formValues, projectName: value })}
+          />
+          <button
+            type="submit"
+            className="flex justify-center rounded p-2 bg-primary font-medium mt-3 text-gray"
           >
-            <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-          </Transition.Child>
+            <BookmarkAddIcon />
+          </button>
+        </form>
 
-          <div className="fixed inset-0 overflow-hidden">
-            <div className="absolute inset-0 overflow-hidden">
-              <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
-                <Transition.Child
-                  as={Fragment}
-                  enter="transform transition ease-in-out duration-500 sm:duration-700"
-                  enterFrom="translate-x-full"
-                  enterTo="translate-x-0"
-                  leave="transform transition ease-in-out duration-500 sm:duration-700"
-                  leaveFrom="translate-x-0"
-                  leaveTo="translate-x-full"
-                >
-                  <Dialog.Panel className="pointer-events-auto relative w-screen max-w-lg shadow-6  border-opacity-1">
-                    <Transition.Child
-                      as={Fragment}
-                      enter="ease-in-out duration-500"
-                      enterFrom="opacity-0"
-                      enterTo="opacity-100"
-                      leave="ease-in-out duration-500"
-                      leaveFrom="opacity-100"
-                      leaveTo="opacity-0"
-                    >
-                      <div className="absolute left-0 top-0 -ml-8 flex pr-2 pt-4 sm:-ml-10 sm:pr-4">
-                        <button
-                          type="button"
-                          className="relative rounded-md dark:text-white text-black  hover:text-meta-1 focus:outline-none"
-                          onClick={() => setOpen(false)}
-                        >
-                          <CloseIcon className='hover:text-meta-1' />
-                        </button>
-                      </div>
-                    </Transition.Child>
-                    <div className="flex h-full flex-col overflow-y-scroll bg-white dark:bg-boxdark py-6 shadow-xl">
-                      <div className="px-4 sm:px-6">
-                        <Dialog.Title className="text-2xl mb-6 mt-5 font-semibold dark:text-white leading-6 text-gray-900">
-                          Create New Template
-                        </Dialog.Title>
-                        <form className='flex gap-1 items-center'>
-                          <FormField
-                            className={'w-full'}
-                            label="New Template"
-                            type="text"
-                            placeholder="New Template Name"
-                            value={formValues.projectName}
-                            onChange={(value) => setFormValues({ ...formValues, projectName: value })}
-                          />
-                          <button
-                            type="submit"
-                            className="flex justify-center rounded p-2 bg-primary font-medium mt-3 text-gray"
-                          >
-                            <BookmarkAddIcon />
-                          </button>
-                        </form>
+        <Dialog.Title className="text-2xl mb-6 mt-5 font-semibold dark:text-white leading-6 text-gray-900">
+          Templates
+        </Dialog.Title>
 
-                        <Dialog.Title className="text-2xl mb-6 mt-5 font-semibold dark:text-white leading-6 text-gray-900">
-                          Templates
-                        </Dialog.Title>
-
-                        <div className='shadow flex items-center justify-between my-6 dark:bg-form-input bg-stroke p-2 px-4'>
-                          <p className='dark:text-white text-black font-medium'>Junior Development Training</p>
-                          <div className='w-10 h-10 cursor-pointer bg-primary flex items-center justify-center rounded-full text-white'>
-                            <TurnedInNotIcon />
-                          </div>
-                        </div>
-
-                        <div className='shadow flex items-center justify-between my-6 dark:bg-form-input bg-stroke p-2 px-4'>
-                          <p className='dark:text-white text-black font-medium'>Support Assistant Training</p>
-                          <div className='w-10 h-10 cursor-pointer bg-primary flex items-center justify-center rounded-full text-white'>
-                            <TurnedInNotIcon />
-                          </div>
-                        </div>
-
-
-                      </div>
-                      <div className="relative mt-6 flex-1 px-4 sm:px-6">{/* Your content */}</div>
-                    </div>
-                  </Dialog.Panel>
-                </Transition.Child>
-              </div>
-            </div>
+        <div className='shadow flex items-center justify-between my-6 dark:bg-form-input bg-stroke p-2 px-4'>
+          <p className='dark:text-white text-black font-medium'>Junior Development Training</p>
+          <div className='w-10 h-10 cursor-pointer bg-primary flex items-center justify-center rounded-full text-white'>
+            <TurnedInNotIcon />
           </div>
-        </Dialog>
-      </Transition.Root>
+        </div>
+
+        <div className='shadow flex items-center justify-between my-6 dark:bg-form-input bg-stroke p-2 px-4'>
+          <p className='dark:text-white text-black font-medium'>Support Assistant Training</p>
+          <div className='w-10 h-10 cursor-pointer bg-primary flex items-center justify-center rounded-full text-white'>
+            <TurnedInNotIcon />
+          </div>
+        </div>
+      </Slideover>
     </>
   );
 }

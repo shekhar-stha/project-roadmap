@@ -19,11 +19,11 @@ export default function LoginPage() {
     };
 
     return (
-        <section className="login flex items-center justify-center">
-            <div className="login-box shadow-xl border-t-4 border-primary rounded-lg flex flex-col justify-center px-8 py-12 min-[440px]:px-20 min-[440px]:w-fit w-full mx-auto my-auto">
+        <section className="login bg-boxdark-2 flex items-center justify-center">
+            <div className="bg-boxdark login-box shadow-xl border-t-4 border-primary rounded-lg flex flex-col justify-center px-8 py-12 min-[440px]:px-20 min-[440px]:w-fit w-full mx-auto my-auto">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <Image src="/logo.png" alt="logo" width={48} height={48} className="mx-auto h-12 w-auto" />
-                    <h2 className="mt-5 text-center text-2xl font-bold leading-9 text-primary">
+                    <h2 className="mt-5 text-center text-2xl font-bold leading-9 text-white">
                         Sign in to your account
                     </h2>
                 </div>
@@ -33,7 +33,7 @@ export default function LoginPage() {
                         {formFields.map((field) => (
                             <div key={field.id}>
                                 <div>
-                                    <label htmlFor={field.id} className="mb-3 block text-black dark:text-white">
+                                    <label htmlFor={field.id} className="mb-3 block text-white">
                                         {field.label}
                                     </label>
                                     <div className="relative">
@@ -43,7 +43,7 @@ export default function LoginPage() {
                                             type={passwordVisible ? 'text' : field.type}
                                             autoComplete={field.id}
                                             placeholder={field.placeholder}
-                                            className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 font-large outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                                            className="w-full rounded-lg border-[1.5px] border-form-strokedark bg-form-input py-3 px-5 font-large outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:focus:border-primary"
                                         />
                                         {field.type === 'password' && (
                                             <button
@@ -73,7 +73,7 @@ export default function LoginPage() {
                     </form>
 
                     {/* Registration Link */}
-                    <p className="mt-10 text-center text-sm text-gray-500">
+                    <p className="mt-10 text-center text-sm text-white">
                         Not registered yet?{' '}
                         <a href="#" className="font-semibold leading-6 text-primary hover:text-indigo-500">
                             Ask your admin for an invite

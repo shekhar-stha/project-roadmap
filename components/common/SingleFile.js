@@ -33,7 +33,7 @@ export default function SingleFile({file, className}) {
                     <DownloadIcon />
                 </a>
             </div>
-            <p className='text-center line-clamp-1'>{file.name}</p>
+            <p className='text-center line-clamp-1 dark:text-white text-black'>{file.name}</p>
         </div>
     )
 }

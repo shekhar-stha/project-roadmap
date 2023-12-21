@@ -30,21 +30,30 @@ export default function page() {
     <>
       <h2 className="header">Dashboard</h2>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
-        <CardDataStats title="Current Projects" total="8">
-          <WebhookIcon className='fill-primary dark:fill-white' />
-        </CardDataStats>
 
-        <CardDataStats title="Messages" total="12">
-          <MessageIcon className='fill-primary dark:fill-white' />
-        </CardDataStats>
+        <Link href="/dashboard/projects">
+          <CardDataStats title="Current Projects" total="8">
+            <WebhookIcon className='fill-primary dark:fill-white' />
+          </CardDataStats>
+        </Link>
 
-        <CardDataStats title="Tasks" total="45">
-          <PlaylistAddIcon className='fill-primary dark:fill-white' />
-        </CardDataStats>
+        <Link href="/messages">
+          <CardDataStats title="Messages" total="12">
+            <MessageIcon className='fill-primary dark:fill-white' />
+          </CardDataStats>
+        </Link>
 
+        <Link href="/dashboard/tasks">
+          <CardDataStats title="Tasks" total="45">
+            <PlaylistAddIcon className='fill-primary dark:fill-white' />
+          </CardDataStats>
+        </Link>
+
+        <Link href="/dashboard/announcements">
         <CardDataStats title="Announcements" total="9">
           <CampaignIcon className='fill-primary dark:fill-white' />
         </CardDataStats>
+        </Link>
       </div>
 
       <div className='my-9'>

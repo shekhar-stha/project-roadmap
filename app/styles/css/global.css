@@ -34,3 +34,15 @@ body {
 .message-files .single-file{
   flex-basis: 30%
 }
+
+@media(max-width: 768px){
+  .message-files .single-file{
+    flex-basis: 46%
+  }
+}
+
+@media(max-width: 375px){
+  .message-files .single-file{
+    flex-basis: 80%
+  }
+}

@@ -4,7 +4,7 @@ import AttachmentIcon from '@mui/icons-material/Attachment';
 import DownloadIcon from '@mui/icons-material/Download';
 export default function SingleFile({file, className}) {
     return (
-        <div className={`relative group ${className ? className : ""}`}>
+        <div className={`single-file relative group ${className ? className : ""}`}>
             <div className="mb-2 w-full h-36 flex flex-col justify-center items-center border dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary border-stroke bg-white shadow-default rounded-lg overflow-hidden relative">
                 {file?.type?.startsWith('image/') ? (
                     <div>

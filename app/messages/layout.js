@@ -1,8 +1,7 @@
 "use client";
 import "../styles/css/data-tables.css";
+import '../styles/css/global.css'
 import { useState, useEffect } from "react";
-
-import Sidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
 import Loader from "@/components/Loader";
 import MessageSidebar from "@/components/Sidebar/MessageSidebar";

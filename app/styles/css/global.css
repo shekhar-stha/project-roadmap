@@ -25,3 +25,12 @@ body {
 .two-col-grid{
   @apply grid grid-cols-1 gap-x-6 gap-y-8 md:grid-cols-2 lg:grid-cols-2 xl:gap-x-8
 }
+.message-files{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem
+}
+
+.message-files .single-file{
+  flex-basis: 30%
+}

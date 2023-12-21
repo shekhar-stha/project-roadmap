@@ -1,0 +1,11 @@
+.message-file-grid{
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 20px;
+    flex-wrap: wrap;
+    gap: 1rem
+}
+
+.message-file-grid .single-file{
+    flex-basis: 30%
+}

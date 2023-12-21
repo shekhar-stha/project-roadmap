@@ -34,7 +34,7 @@ export default function page() {
 
   const handleMessageSend = () => {
     if (inputMessage.trim() !== '') {
-      setChatMessages([...chatMessages, { message: inputMessage, user: 'me' }]);
+      setChatMessages([...chatMessages, { message: inputMessage, user: 'other' }]);
       setInputMessage('');
     }
   };
@@ -47,7 +47,7 @@ export default function page() {
     e.preventDefault();
     const files = e.target.files;
     setUploadedFiles(files);
-    setChatMessages([...chatMessages, { message: inputMessage, user: 'me', files: Array.from(files) }]);
+    setChatMessages([...chatMessages, { message: inputMessage, user: 'other', files: Array.from(files) }]);
   };
 
   const endUser = {
@@ -168,7 +168,7 @@ const ChatBody = ({ messages, img }) => {
 
           {
             msg?.files && (
-              <div className='grid gap-3 grid-cols-3 place-content-start'>
+              <div className='message-files'>
                 {
                   msg.files.map((file, index) => (
                     <SingleFile key={index} file={file} />

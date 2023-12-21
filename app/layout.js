@@ -1,5 +1,4 @@
 import { Inter } from 'next/font/google'
-import { ToastContainer, toast } from 'react-toastify';
 import './styles/css/global.css';
 import './styles/scss/_global.scss';
 
@@ -13,19 +12,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body suppressHydrationWarning={true}>{children}</body>
-      <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
+      <body suppressHydrationWarning={true}>
+        {children}
+      </body>
     </html>
   )
 }

@@ -1,22 +1,31 @@
-"use client";
+'use client'
 import "../styles/css/data-tables.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import Sidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
 import Loader from "@/components/Loader";
+import { ToastContainer } from "react-toastify";
 
 function RootLayout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => setLoading(false), 1000);
-  }, []);
+  const [loading, setLoading] = useState(false);
 
   return (
     <html lang="en">
-      <body suppressHydrationWarning={true}>
+      <body>
+        <ToastContainer
+          position="bottom-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
         <div className="dark:bg-boxdark-2 dark:text-bodydark">
           {loading ? (
             <Loader />

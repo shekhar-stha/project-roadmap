@@ -7,6 +7,7 @@ export default function ProfileCard({ name, role, imageUrl, href, lists, mailBtn
 
 
     return (
+      <>
         <Link href={href}>
             <div className='profile-card w-full rounded-lg py-6 px-8 shadow-3 dark:border-strokedark dark:bg-boxdark'>
                 <div className='flex gap-x-4'>
@@ -27,17 +28,8 @@ export default function ProfileCard({ name, role, imageUrl, href, lists, mailBtn
                         </p>
                     </div>
                 ))}
-
-                {mailBtn && (
-                    <div className='mt-7'>
-                        <Link href="/messages/detail" className='px-6 rounded bg-primary p-3 font-medium text-gray'>
-                            Send Message
-                        </Link>
-                    </div>
-                )}
-
-              
             </div>
         </Link>
+      </>
     );
 }

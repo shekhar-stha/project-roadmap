@@ -28,7 +28,7 @@ export default function Page() {
 
   return (
     <>
-      <div className='flex justify-between align-middle mb-3'>
+      <div className='flex flex-wrap justify-between items-center mb-6'>
         <h1 className='header'>Developers</h1>
         <div>
           <Link className='rounded bg-primary py-3 px-6 text-lg font-medium text-gray' href='/dashboard/developers/create'>

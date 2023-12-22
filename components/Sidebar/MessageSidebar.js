@@ -103,7 +103,7 @@ const MessageSidebar = ({ sidebarOpen, setSidebarOpen }) => {
     return (
         <aside
             ref={sidebar}
-            className={`absolute left-0 top-0 z-40 flex h-screen w-90 flex-col overflow-y-hidden bg-white shadow-6 duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
+            className={`absolute left-0 top-0 z-50 flex h-screen w-90 flex-col overflow-y-hidden bg-white shadow-6 duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
                 }`}
         >
             {/* <!-- SIDEBAR HEADER --> */}
@@ -144,7 +144,12 @@ const MessageSidebar = ({ sidebarOpen, setSidebarOpen }) => {
 
                     <ul className="flex h-auto flex-col overflow-y-auto">
                         {messageData.map((message, index) => (
-                            <MessageBox key={index} message={message} />
+                            <Link
+                                key={index}
+                                onClick={() => setSidebarOpen(false)}
+                                href="/messages/detail">
+                                <MessageBox message={message} />
+                            </Link>
                         ))}
                     </ul>
                 </nav>

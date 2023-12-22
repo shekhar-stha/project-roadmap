@@ -1,13 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client"
-import Image from 'next/image'
-import React, { useRef } from 'react'
-import InfoIcon from '@mui/icons-material/Info';
-// import { Dialog, Transition } from '@headlessui/react';
-import { Fragment, useState } from 'react';
-import FileShowcase from '@/components/common/FileShowcase';
-import SingleFile from '@/components/common/SingleFile';
-import FileUploadIcon from '@mui/icons-material/FileUpload';
+import React, { useEffect, useRef, useState } from 'react'
 import ChatBody from '@/components/Message/ChatBody';
 import Slideover from '@/components/ui/Slideover';
 import ChatHead from '@/components/Message/ChatHead';
@@ -29,6 +22,7 @@ export default function page() {
   const formattedDate = currentDate.toLocaleString('en-US', {
     month: 'short',
     day: 'numeric',
+    year: 'numeric',
     hour: 'numeric',
     minute: 'numeric',
     hour12: true,
@@ -39,14 +33,20 @@ export default function page() {
 
   const [inputMessage, setInputMessage] = useState('');
   const [chatMessages, setChatMessages] = useState([
-    { message: 'Hello!', user: 'other' },
-    { message: 'Hi ', user: 'me' },
+    { message: 'Hello!', user: 'other', timestamp: formattedDate },
+    { message: 'Hi ', user: 'me', timestamp: formattedDate },
+    { message: 'Hello!', user: 'other', timestamp: formattedDate },
+    { message: 'Hi ', user: 'me', timestamp: formattedDate },
+    { message: 'Hello!', user: 'other', timestamp: formattedDate },
+    { message: 'Hi ', user: 'me', timestamp: formattedDate },
+    { message: 'Hello!', user: 'other', timestamp: formattedDate },
+    { message: 'Hi ', user: 'me', timestamp: formattedDate },
   ]);
-
 
   const handleMessageSend = () => {
     if (inputMessage.trim() !== '') {
-      setChatMessages([...chatMessages, { message: inputMessage, user: 'other' }]);
+      const newMessage = { message: inputMessage, user: 'me', timestamp: formattedDate };
+      setChatMessages([...chatMessages, newMessage]);
       setInputMessage('');
     }
   };
@@ -55,7 +55,8 @@ export default function page() {
     e.preventDefault();
     const files = e.target.files;
     setUploadedFiles(files);
-    setChatMessages([...chatMessages, { message: inputMessage, user: 'me', files: Array.from(files) }]);
+    const newMessage = { message: inputMessage, user: 'me', files: Array.from(files), timestamp: formattedDate };
+    setChatMessages([...chatMessages, newMessage]);
   };
 
   const endUser = {
@@ -63,6 +64,15 @@ export default function page() {
     imageSrc: '/jeremiah-profile.jpg',
     role: 'Software Engineer',
   };
+
+  const messageEndRef = useRef(null);
+  const scrollToBottom = () => {
+    messageEndRef.current?.scrollIntoView({ behavior: "smooth" })
+  }
+
+  useEffect(() => {
+    scrollToBottom()
+  }, [chatMessages])
 
   return (
     <>
@@ -73,6 +83,8 @@ export default function page() {
         {/* Chat Body */}
         <ChatBody img={endUser?.imageSrc} messages={chatMessages} />
 
+        <div ref={messageEndRef} >
+        </div>
         {/* Chat Inputs */}
         <ChatInputs
           inputMessage={inputMessage}

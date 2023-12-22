@@ -21,7 +21,7 @@ export default function page() {
     ];
     return (
         <>
-            <div className='flex justify-between align-middle mb-3'>
+            <div className='flex flex-wrap justify-between align-middle mb-4'>
                 <h1 className='header'>Announcements</h1>
                 <div>
                     <Link className='rounded bg-primary py-3 px-6 text-lg font-medium text-gray' href='/dashboard/announcements/create'>

@@ -27,7 +27,7 @@ export default function SupportAssistantPage() {
 
   return (
     <>
-      <div className='flex justify-between align-middle mb-3'>
+       <div className='flex flex-wrap justify-between mb-6'>
         <h1 className='header'>Support Assistants</h1>
         <div>
           <Link

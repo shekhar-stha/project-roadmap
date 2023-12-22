@@ -44,20 +44,20 @@ export default function FormField({ label, type, placeholder, selectOptions, rad
                     className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                 />
             ) : type === 'radio' ? (
-                <div className='flex [540px]:flex-row flex-row [540px]:gap-y-0 gap-y-3 gap-x-5'>
+                <div className='flex min-[540px]:flex-row flex-wrap flex-col [540px]:gap-y-0 gap-y-3 gap-x-5'>
                     {radioOptions.map((option, index) => (
-                        <div className="flex items-center cursor-pointer bg-white rounded-md px-6 pe-7 py-2" key={index}>
+                        <div className="flex items-center cursor-pointer dark:text-white dark:border-gray-600 dark:bg-form-input bg-stroke rounded-md px-6 pe-7 py-2" key={index}>
                             <input
                                 type="radio"
                                 id={option.label}
                                 value={option.value}
                                 checked={value === option.value}
                                 onChange={() => onChange(option.value)}
-                                className="cursor-pointer w-5 h-5 text-blue-600 bg-gray-100 border-gray-300  focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                className="cursor-pointer w-5 h-5 text-blue-600 bg-gray-100 border-gray-300  focus:ring-2 dark:bg-gray-700 "
                             />
                             <label
                                 htmlFor={option.label}
-                                className="cursor-pointer ms-2 text-lg font-medium text-gray-900 dark:text-gray-300 dark:text-black"
+                                className="cursor-pointer ms-2 text-lg font-medium text-gray-900 dark:text-gray-300 dark:text-white"
                             >
                                 {option.label}
                             </label>

@@ -1,18 +1,13 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client"
-import React, { useEffect, useRef, useState } from 'react';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import FormField from '@/components/form/Formfield';
-import { Fragment } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
-import CloseIcon from '@mui/icons-material/Close';
+import { Dialog } from '@headlessui/react'
 import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
 import TurnedInNotIcon from '@mui/icons-material/TurnedInNot';
-import Link from 'next/link';
 import Panel from '@/components/Panel';
-import DownloadIcon from '@mui/icons-material/Download';
 import Slideover from '@/components/ui/Slideover';
 import LoadTemplateModal from '@/components/Tasks/LoadTemplateModal';
 import TaskForm from '@/components/Tasks/TaskForm';
@@ -20,8 +15,9 @@ import TaskForm from '@/components/Tasks/TaskForm';
 export default function Page() {
   const [open, setOpen] = useState(false)
   const [slideoverOpen, setSlideoverOpen] = useState(false);
-  const [showModal, setShowModal] = React.useState(false);
+  const [showModal, setShowModal] = useState(false);
   const taskBodyRef = useRef(null);
+  const [loadScroll, setLoadScroll] = useState(false);
 
   const [formValues, setFormValues] = useState({
     title: '',
@@ -68,6 +64,7 @@ export default function Page() {
   ]);
 
   const loadTemplate = (templateId) => {
+    console.log(templateId);
     const selectedTemplate = templateTasks.filter((template) => template.templateId === templateId);
     console.log(selectedTemplate)
 
@@ -81,6 +78,7 @@ export default function Page() {
 
       setTasks(newTasks);
       setShowModal(false);
+      setLoadScroll(!loadScroll)
 
       toast.success('Template loaded successfully', {
         position: 'bottom-right',
@@ -104,6 +102,8 @@ export default function Page() {
         theme: 'light',
       });
     }
+
+    return null;
   };
 
   const [tasks, setTasks] = useState([{ title: '', description: '', URL: '', deadline: '', }]);
@@ -114,6 +114,7 @@ export default function Page() {
     const previousTask = tasks[tasks.length - 1];
     if (!previousTask || previousTask.title.trim() !== '') {
       setTasks([...tasks, { title: '', description: '', URL: '', deadline: '' }]);
+      setLoadScroll(!loadScroll)
     } else {
       toast.error('Please fill in the previous task title before adding a new task.', {
         position: 'bottom-right',
@@ -128,11 +129,12 @@ export default function Page() {
     }
   };
 
-  const handleTaskChange = (index, fieldName, value) => {
+  const handleTaskChange = useMemo(() => (index, fieldName, value) => {
     const updatedTasks = [...tasks];
     updatedTasks[index][fieldName] = value;
     setTasks(updatedTasks);
-  };
+  }, [tasks]);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -200,6 +202,7 @@ export default function Page() {
 
       {/* Task Form */}
       <TaskForm
+        loadScroll={loadScroll}
         tasks={tasks}
         handleAddTask={handleAddTask}
         handleTaskChange={handleTaskChange}

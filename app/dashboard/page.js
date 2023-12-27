@@ -9,7 +9,7 @@ import MessageIcon from '@mui/icons-material/Message';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import CampaignIcon from '@mui/icons-material/Campaign';
 
-export default function page() {
+export default function Dashboard() {
   const announcementData = [
     {
       title: 'We got new client',

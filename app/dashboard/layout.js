@@ -10,7 +10,6 @@ import { ToastContainer } from "react-toastify";
 function RootLayout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-
   return (
     <html lang="en">
       <body>

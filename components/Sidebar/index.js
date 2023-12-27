@@ -67,9 +67,8 @@ const sidebarLinks = [
     {
         title: 'Image Scaler',
         icon: <AddPhotoAlternateIcon />,
-        path: 'https://image-scaler-sigma.vercel.app/',
+        path: '/dashboard/image-scaler',
         group: 'TOOLS',
-        targetBlank: true,
     },
     {
         title: 'SEO Checker',

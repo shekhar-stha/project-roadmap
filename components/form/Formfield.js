@@ -1,6 +1,6 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
-export default function FormField({ label, type, placeholder, selectOptions, radioOptions, value, onChange, className, notRequired }) {
+import "../../app/styles/css/input.css"
+export default function FormField({ label, type, placeholder, selectOptions, radioOptions, value, onChange, className, notRequired, error }) {
     return (
         <div className={`mb-4.5 ${className ? className : ""}`}>
             {
@@ -43,6 +43,14 @@ export default function FormField({ label, type, placeholder, selectOptions, rad
                     placeholder={placeholder}
                     className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                 />
+            ) : type === 'password' ? (
+                <input
+                    type="password"
+                    value={value}
+                    onChange={(e) => onChange(e.target.value)}
+                    placeholder={placeholder}
+                    className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                />
             ) : type === 'radio' ? (
                 <div className='flex min-[540px]:flex-row flex-wrap flex-col [540px]:gap-y-0 gap-y-3 gap-x-5'>
                     {radioOptions.map((option, index) => (
@@ -61,10 +69,20 @@ export default function FormField({ label, type, placeholder, selectOptions, rad
                             >
                                 {option.label}
                             </label>
+                            <input src=''
+                                className='darkL: akjskl js'
+                            >
+
+                            </input>
                         </div>
                     ))}
                 </div>
             ) : null}
+            {
+                error && (
+                    <p className="mt-2 ml-2 text-[#ff4444] text-sm">{error}</p>
+                )
+            }
         </div>
     );
 };

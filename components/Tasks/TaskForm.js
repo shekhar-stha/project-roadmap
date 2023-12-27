@@ -2,15 +2,27 @@
 import React, { useEffect, useRef } from 'react';
 import FormField from '@/components/form/Formfield';
 
-export default function TaskForm({ tasks, handleAddTask, handleTaskChange, handleSubmit }) {
+export default function TaskForm({ tasks, handleAddTask, handleTaskChange, handleSubmit, loadScroll }) {
     const taskEndRef = useRef(null);
     const scrollToBottom = () => {
+        console.log("running")
         taskEndRef.current?.scrollIntoView({ behavior: "smooth" })
+        console.log("completed")
     }
 
+    // useEffect(() => {
+    //     scrollToBottom()
+    // }, [handleAddTask])
+
     useEffect(() => {
-        scrollToBottom()
-    }, [handleAddTask])
+        scrollToBottom();
+    }, [loadScroll]);
+
+    const handleAddSubmit = () => {
+        handleAddTask()
+    }
+
+    console.log("loadScroll", loadScroll)
 
     return (
         <form onSubmit={handleSubmit}>
@@ -66,7 +78,7 @@ export default function TaskForm({ tasks, handleAddTask, handleTaskChange, handl
 
                 <button
                     type='button'
-                    onClick={handleAddTask}
+                    onClick={handleAddSubmit}
                     className='rounded bg-primary flex-auto py-3 px-6 text-lg font-medium text-gray'>
                     Add Task
                 </button>

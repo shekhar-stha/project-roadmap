@@ -1,32 +1,31 @@
 "use client"
-
 import Panel from '@/components/Panel'
 import DynamicProfilePicture from '@/components/Profile/DynamicProfilePicture'
 import ProfileCard from '@/components/Profile/ProfileCard'
 import PointAnswers from '@/components/common/PointAnswers'
 import { API_URL } from '@/config/config'
 import axios from 'axios'
-import Image from 'next/image'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify'
 
-export default function DeveloperDetails({ params }) {
-    const { developerId } = params
-    const [profile, setProfile] = useState({})
+export default function SupportAssistant({ params }) {
+    const { supportAssistantId } = params
+    const [profile, setProfile] = useState()
 
     useEffect(() => {
         apiCall()
     }, [])
 
     const apiCall = async () => {
-        const apiEndpoint = `${API_URL}/user/getUser/${developerId}`;
+        const apiEndpoint = `${API_URL}/user/getUser/${supportAssistantId}`;
 
         try {
             const response = await axios.get(`${apiEndpoint}`);
             if (response?.data?.status) {
                 console.log("respone", response?.data?.data)
                 setProfile(response?.data?.data);
+                console.log("profile", profile)
             } else {
                 console.error('Error');
             }
@@ -38,9 +37,6 @@ export default function DeveloperDetails({ params }) {
         }
     }
 
-
-
-    console.log("Profile",profile)
 
     const completedProjects = [
         {
@@ -64,8 +60,10 @@ export default function DeveloperDetails({ params }) {
         <>
             <div className='profile-card w-full rounded-lg py-6 px-8 shadow-3 dark:border-strokedark dark:bg-boxdark'>
                 <ToastContainer />
-                <div className='flex flex-wrap gap-x-4 gap-3 mb-5'>
-                    <DynamicProfilePicture size={24} name={profile?.fullName} imageUrl={profile?.photo} />
+                <div className='flex gap-x-4 mb-5'>
+                    <div>
+                        <DynamicProfilePicture size={24} name={profile?.fullName} imageUrl={profile?.photo} />
+                    </div>
                     <div className='profile-info my-auto'>
                         <h3 className='text-2xl font-medium text-black dark:text-white'>{profile?.fullName}</h3>
                         <p className='text-base text-black dark:text-white'>{profile?.userType}</p>
@@ -75,7 +73,7 @@ export default function DeveloperDetails({ params }) {
                 <div>
                     <p className='text-lg mb-2'>
                         <span className='text-primary dark:text-secondary font-medium pe-2'>Email:</span>
-                        <span className='text-black dark:text-white break-words'>{profile?.email}</span>
+                        <span className='text-black dark:text-white '>{profile?.email}</span>
                     </p>
 
                     <p className='text-lg'>
@@ -84,7 +82,7 @@ export default function DeveloperDetails({ params }) {
                     </p>
                 </div>
             </div>
-            <h3 className='header mt-9 ps-4'>Completed Projects</h3>
+            <h3 className='header mt-9 ps-4'>Reviewed Projects</h3>
             {
                 completedProjects.map((project, index) => (
                     <Panel key={index} className='my-6'>

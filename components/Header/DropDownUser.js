@@ -6,13 +6,13 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useAppSelector } from "@/redux/hooks";
+import ProfilePicture from "../Profile/ProfilePicture";
 
 const DropdownUser = () => {
     const user = useAppSelector(state => state?.user?.user)
 
-    console.log(user)
     const [dropdownOpen, setDropdownOpen] = useState(false);
-
+    const imageUrl = user?.photo
     const trigger = useRef(null);
     const dropdown = useRef(null);
 
@@ -31,20 +31,6 @@ const DropdownUser = () => {
         document.addEventListener("click", clickHandler);
         return () => document.removeEventListener("click", clickHandler);
     });
-
-    const [initials, setInitials] = useState()
-    useEffect(() => {
-        if (user !== undefined && user !== null) {
-            const words = user?.fullName.split(' ');
-            // Extract the first character of each word
-            if (words.length > 0) {
-                const letters = words[0].charAt(0) + (words.length > 1 ? words[1]?.charAt(0) : '');
-                setInitials(letters.toUpperCase());
-            } else {
-                setInitials(name.charAt(0));
-            }
-        }
-    }, [user]);
 
     // close if the esc key is pressed
     useEffect(() => {
@@ -71,19 +57,7 @@ const DropdownUser = () => {
                     <span className="block text-xs capitalize">{user?.userType}</span>
                 </span>
 
-                <div className={`flex justify-center items-center h-12 w-12 rounded-full ${user?.photo ? "" : "bg-primary"}`}>
-                    {
-                        user?.photo ?
-                            <Image
-                                className="rounded-full"
-                                width={55}
-                                height={55}
-                                src={"/shekhar-profile.jpg"}
-                                alt="User"
-                            />
-                            : <span className="text-white text-[1.2rem]">{initials}</span>
-                    }
-                </div>
+                <ProfilePicture />
                 <ExpandMoreIcon />
             </Link>
 

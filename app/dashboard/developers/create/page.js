@@ -8,9 +8,10 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import axios from 'axios';
 import { API_URL } from '@/config/config';
+import { useRouter } from 'next/navigation';
 
 export default function Page() {
-
+    const router = useRouter()
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
 
@@ -62,9 +63,10 @@ export default function Page() {
             const response = await axios.post(`${API_URL}/user/addUser`, formValues);
             if (response?.data?.status) {
                 console.log("respone", response?.data)
-                toast.success("Successfully Added", {
+                toast.success(`Successfully Added ${formValues?.fullName}`, {
                     position: toast.POSITION.BOTTOM_RIGHT,
                 })
+                router.push('/dashboard/developers')
             } else {
                 console.error('Error');
             }

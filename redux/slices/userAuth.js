@@ -1,8 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
-const storedLoginDetails = typeof localStorage !== 'undefined' ? localStorage.getItem('loginDetails') : null;
-
-const loginDetails = storedLoginDetails ? JSON.parse(storedLoginDetails) : null;
-
+const storedLoginDetails = typeof window !== 'undefined' ? localStorage.getItem('loginDetails') : null;
+const loginDetails = typeof window !== 'undefined' ? storedLoginDetails ? JSON.parse(storedLoginDetails) : null : null;
 
 export const initialState = {
     isLoading: false,
@@ -34,9 +32,13 @@ export const userAuth = createSlice({
             state.isLoading = false;
             state.user = null;
             state.error = null;
+        },
+        updateProfilePicture: (state, action) => {
+            console.log('Updating profile picture with:', action.payload);
+            state.user.photo = action.payload;
         }
     }
 })
 
-export const { loginStart, loginSuccess, loginError, logout } = userAuth.actions;
+export const { loginStart, loginSuccess, loginError, logout, updateProfilePicture } = userAuth.actions;
 export default userAuth.reducer;

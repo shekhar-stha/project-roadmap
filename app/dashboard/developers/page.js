@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 
 export default function Page() {
   const [profiles, setProfiles] = useState([]);
-
+console.log("profiles",profiles)
 
   useEffect(() => {
     apiCall()
@@ -65,7 +65,7 @@ export default function Page() {
             name={profile.fullName}
             role={profile.userType}
             href={`/dashboard/developers/${profile.id}`}
-            imageUrl={profile?.photo ? profile.photo : ""}
+            imageUrl={profile.photo}
             extraTitle="Working On"
             extraDescription="Project Name"
           />

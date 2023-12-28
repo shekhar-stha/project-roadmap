@@ -1,33 +1,39 @@
+"use client"
 import ProfileCard from '@/components/Profile/ProfileCard';
-import { Support } from '@mui/icons-material';
+import { API_URL } from '@/config/config';
+import axios from 'axios';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 export default function SupportAssistantPage() {
-  const supportAssistants = [
-    {
-      name: 'Roshni Maharjan',
-      role: 'Junior Support Assistant',
-      href: '/dashboard/support-assistant/detail',
-      lists: [
-        { title: 'Projects to Review', data: 'Richards Lawn Care' },
-      ],
-      imageUrl: '/support-assistant.jpg',
-    },
-    {
-      name: 'Reecha Maharjan',
-      role: 'Senior Support Assistant',
-      href: '/dashboard/support-assistant/detail',
-      lists: [
-        { title: 'Projects to Review', data: 'Escobar Lawn Care' },
-      ],
-      imageUrl: '/support-assistant.jpg',
-    },
-  ];
+  const [supportAssistants, setSupportAssistants] = useState([]);
+  useEffect(() => {
+    apiCall()
+  }, [])
+
+  const apiCall = async () => {
+    const apiEndpoint = `${API_URL}/user/getUsers/supportAssistants`;
+
+    try {
+      const response = await axios.get(`${apiEndpoint}`);
+      if (response?.data?.status) {
+        console.log("respone", response?.data?.data)
+        setSupportAssistants(response?.data?.data);
+      } else {
+        console.error('Error');
+      }
+    } catch (error) {
+      toast.error(error?.response?.data?.msg, {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
+      console.error('Error fetching profiles:', error);
+    }
+  }
 
   return (
     <>
-       <div className='flex flex-wrap justify-between mb-6'>
+      <div className='flex flex-wrap justify-between mb-6'>
         <h1 className='header'>Support Assistants</h1>
         <div>
           <Link
@@ -38,16 +44,19 @@ export default function SupportAssistantPage() {
         </div>
       </div>
       <div className="two-col-grid">
-        {supportAssistants.map((assistant, index) => (
-          <ProfileCard
-            key={index}
-            name={assistant.name}
-            role={assistant.role}
-            href={assistant.href}
-            imageUrl={assistant.imageUrl}
-            lists={assistant.lists}
-          />
-        ))}
+        {
+          supportAssistants.length > 0 ?
+            supportAssistants.map((assistant, index) => (
+              <ProfileCard
+                key={index}
+                name={assistant.fullName}
+                role={assistant.userType === 'supportAssistant' ? 'Support Assistant' : assistant?.userType}
+                href={`/dashboard/support-assistant/${assistant.id}`}
+                imageUrl={assistant.imageUrl}
+              />
+            ))
+            : <h4 className='text-white text-xl'>No Support Assistants Listed</h4>
+        }
       </div>
     </>
   );

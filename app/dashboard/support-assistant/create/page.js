@@ -9,9 +9,12 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import axios from 'axios';
 import { API_URL } from '@/config/config';
 import { useRouter } from 'next/navigation';
+import { addSupportAssistants } from '@/redux/slices/supportAssistantSlice';
+import { useAppDispatch } from '@/redux/hooks';
 
 export default function Page() {
     const router = useRouter()
+    const dispatch = useAppDispatch();
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
 
@@ -66,6 +69,7 @@ export default function Page() {
                 toast.success(`Successfully Added ${formValues?.fullName}`, {
                     position: toast.POSITION.BOTTOM_RIGHT,
                 })
+                dispatch(addSupportAssistants(response?.data?.data))
                 router.push('/dashboard/support-assistant')
             } else {
                 console.error('Error');

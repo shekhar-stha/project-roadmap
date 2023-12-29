@@ -1,3 +1,5 @@
+"use client"
+import { API_URL } from '@/config/config';
 import { useAppSelector } from '@/redux/hooks';
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
@@ -25,10 +27,10 @@ export default function DynamicProfilePicture({ name, imageUrl, size, fontSize }
                 imageUrl ?
                     <Image
                         className={`rounded-full ${size ? `w-${size} min-w-${size} min-h-${size} h-${size}` : "w-12 h-12"} object-cover`}
-                        src={`http://localhost:8000/${imageUrl}`}
+                        src={`${API_URL}/img/${imageUrl}`}
                         alt={name}
-                        width={200}
-                        height={200} 
+                        width={150}
+                        height={150} 
                         />
                     : <span className={`text-white ${fontSize ? `text-[${fontSize}rem]` : `text-[1.4rem]`}`}>{initials}</span>
             }

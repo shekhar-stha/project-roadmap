@@ -12,7 +12,6 @@ const DropdownUser = () => {
     const user = useAppSelector(state => state?.user?.user)
 
     const [dropdownOpen, setDropdownOpen] = useState(false);
-    const imageUrl = user?.photo
     const trigger = useRef(null);
     const dropdown = useRef(null);
 

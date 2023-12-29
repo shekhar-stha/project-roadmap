@@ -11,7 +11,7 @@ export default function ProfileCard({ name, role, imageUrl, href, lists, extraTi
             <Link href={href}>
                 <div className='profile-card w-full rounded-lg py-6 px-8 shadow-3 dark:border-strokedark dark:bg-boxdark'>
                     <div className='flex flex-wrap gap-x-4 gap-3'>
-                        <DynamicProfilePicture size={24} name={name} imageUrl={imageUrl} />
+                        <DynamicProfilePicture size={16} name={name} imageUrl={imageUrl} />
                         <div className='profile-info my-auto'>
                             <h3 className='text-2xl font-medium text-black dark:text-white'>{name}</h3>
                             <p className='text-base text-black dark:text-white capitalize'>{role}</p>

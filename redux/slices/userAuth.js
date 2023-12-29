@@ -1,10 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit'
-const storedLoginDetails = typeof window !== 'undefined' ? localStorage.getItem('loginDetails') : null;
-const loginDetails = typeof window !== 'undefined' ? storedLoginDetails ? JSON.parse(storedLoginDetails) : null : null;
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+
+const getParsedLoginDetails = () => {
+    const storedLoginDetails = localStorage.getItem('loginDetails');
+    return storedLoginDetails ? JSON.parse(storedLoginDetails) : null;
+};
 
 export const initialState = {
     isLoading: false,
-    user: loginDetails?.data,
+    user: getParsedLoginDetails()?.data || null,
     error: null
 }
 

@@ -9,8 +9,11 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import axios from 'axios';
 import { API_URL } from '@/config/config';
 import { useRouter } from 'next/navigation';
+import { useAppDispatch } from '@/redux/hooks';
+import { addDeveloper } from '@/redux/slices/developersSlice';
 
 export default function Page() {
+    const dispatch = useAppDispatch();
     const router = useRouter()
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
@@ -66,6 +69,7 @@ export default function Page() {
                 toast.success(`Successfully Added ${formValues?.fullName}`, {
                     position: toast.POSITION.BOTTOM_RIGHT,
                 })
+                dispatch(addDeveloper(response?.data?.data))
                 router.push('/dashboard/developers')
             } else {
                 console.error('Error');

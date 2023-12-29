@@ -1,50 +1,49 @@
-// developersSlice.js
+// announcementSlice.js
 import { API_URL } from '@/config/config';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// Async Thunk for fetching developers
-export const fetchDevelopers = createAsyncThunk('developers/fetchDevelopers', async () => {
-    const apiEndpoint = `${API_URL}/user/getUsers/developers`;
+export const fetchAnnouncements = createAsyncThunk('announcements/fetchAnnouncements', async () => {
+    const apiEndpoint = `${API_URL}/announcement/getAnnouncements`;
 
     try {
         const response = await axios.get(apiEndpoint);
         if (response?.data?.status) {
             return response?.data?.data;
         } else {
-            throw new Error('Error fetching developers');
+            throw new Error('Error fetching Announcements');
         }
     } catch (error) {
         throw new Error(`Error fetching developers: ${error?.response?.data?.msg}`);
     }
 });
 
-const developersSlice = createSlice({
-    name: 'developers',
+const announcementSlice = createSlice({
+    name: 'announcements',
     initialState: {
-        profiles: [],
+        announcements: [],
         isloading: false,
         error: null,
     },
     reducers: {
-        addDeveloper: (state, action) => {
-            state.profiles.push(action.payload);
+        addAnnouncement: (state, action) => {
+            state.announcements.push(action.payload);
         },
     },
     extraReducers: (builder) => {
         builder
-            .addCase(fetchDevelopers.pending, (state) => {
+            .addCase(fetchAnnouncements.pending, (state) => {
                 state.isloading = true;
             })
-            .addCase(fetchDevelopers.fulfilled, (state, action) => {
+            .addCase(fetchAnnouncements.fulfilled, (state, action) => {
                 state.isloading = false;
-                state.profiles = action.payload;
+                state.announcements = action.payload;
             })
-            .addCase(fetchDevelopers.rejected, (state, action) => {
+            .addCase(fetchAnnouncements.rejected, (state, action) => {
                 state.isloading = false;
                 state.error = action.error.message;
             })
     },
 });
-export const { addDeveloper } = developersSlice.actions;
-export default developersSlice.reducer;
+export const { addAnnouncement } = announcementSlice.actions;
+export default announcementSlice.reducer;

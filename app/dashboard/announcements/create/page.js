@@ -4,29 +4,65 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import FormField from '@/components/form/Formfield';
+import { addAnnouncement } from '@/redux/slices/announcementSlice';
+import axios from 'axios';
+import { API_URL } from '@/config/config';
+import { useAppDispatch } from '@/redux/hooks';
+import { useRouter } from 'next/navigation';
 
 
 export default function Page() {
-
+    const token = localStorage.getItem('loginDetails') ? JSON.parse(localStorage.getItem('loginDetails')).token : null;
+    const dispatch = useAppDispatch();
+    const router = useRouter();
+    
     const [formValues, setFormValues] = useState({
-        topic: '',
+        title: '',
         description: '',
         time: '',
     });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        toast.success('Project Added Successfully', {
-            position: 'bottom-right',
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: 'light',
-        });
-        console.log(formValues);
+
+        if (!formValues.title || !formValues.description) {
+            toast.error('Please fill in all required fields.', {
+                position: 'bottom-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'light',
+            });
+            return;
+        }
+
+        try {
+            const response = await axios.post(`${API_URL}/announcement/postAnnouncement`, formValues,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+            if (response?.data?.status) {
+                console.log("respone", response?.data)
+                toast.success(`Successfully Posted Announcement `, {
+                    position: toast.POSITION.BOTTOM_RIGHT,
+                })
+                dispatch(addAnnouncement(response?.data?.data))
+                router.push('/dashboard/announcements')
+            } else {
+                console.error('Error');
+            }
+        } catch (error) {
+            console.log(error)
+            toast.error(error?.response?.data?.msg, {
+                position: toast.POSITION.BOTTOM_RIGHT,
+            })
+        }
     };
 
     return (
@@ -38,11 +74,11 @@ export default function Page() {
                     </div>
                     <div className="p-6.5">
                         <FormField
-                            label="Announcement Topic"
+                            label="Announcement title"
                             type="text"
-                            placeholder="Enter Announcement Topic"
-                            value={formValues.topic}
-                            onChange={(value) => setFormValues({ ...formValues, topic: value })}
+                            placeholder="Enter Announcement title"
+                            value={formValues.title}
+                            onChange={(value) => setFormValues({ ...formValues, title: value })}
                         />
 
                         <FormField

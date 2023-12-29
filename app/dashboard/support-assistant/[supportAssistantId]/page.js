@@ -37,6 +37,18 @@ export default function SupportAssistant({ params }) {
         }
     }
 
+    // const { supportAssistantId } = params
+    // const dispatch = useAppDispatch();
+
+    // useEffect(() => {
+    //     dispatch(fetchSupportAssistants());
+    // }, [dispatch]);
+
+    // const profiles = useAppSelector((state) => state.supportAssistants.profiles);
+    // const profile = profiles.find((profile) => profile.id === supportAssistantId);
+
+    // console.log("profiles", profiles)
+    // console.log("profile", profile)
 
     const completedProjects = [
         {

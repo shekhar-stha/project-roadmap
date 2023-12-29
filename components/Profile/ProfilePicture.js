@@ -1,3 +1,4 @@
+import { API_URL } from '@/config/config';
 import { useAppSelector } from '@/redux/hooks';
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
@@ -19,18 +20,20 @@ export default function ProfilePicture() {
                 setInitials(name.charAt(0));
             }
         }
-    }, []);
+    }, [name, user]);
     return (
         <div className={`img-div w-12 h-12 flex items-center justify-center ${imageUrl ? null : "bg-primary rounded-full"}`}>
             {
-                imageUrl ?
-                    <Image
-                        className="rounded-full w-12 h-12 object-cover"
-                        src={`http://localhost:8000/${imageUrl}`}
-                        alt={user?.fullName}
-                        width={100}
-                        height={100} />
-                    : <span className="text-white text-[1.2rem]">{initials}</span>
+                user ?
+                    imageUrl ?
+                        <Image
+                            className="rounded-full w-12 h-12 object-cover"
+                            src={`${API_URL}/img/${imageUrl}`}
+                            alt={user?.fullName}
+                            width={100}
+                            height={100} />
+                        : <span className="text-white text-[1.2rem]">{initials}</span>
+                    : null
             }
         </div>
     )

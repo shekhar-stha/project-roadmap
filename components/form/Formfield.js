@@ -69,11 +69,6 @@ export default function FormField({ label, type, placeholder, selectOptions, rad
                             >
                                 {option.label}
                             </label>
-                            <input src=''
-                                className='darkL: akjskl js'
-                            >
-
-                            </input>
                         </div>
                     ))}
                 </div>

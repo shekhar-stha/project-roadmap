@@ -1,35 +1,28 @@
 "use client"
 import ProfileCard from '@/components/Profile/ProfileCard';
 import { API_URL } from '@/config/config';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { fetchSupportAssistants } from '@/redux/slices/supportAssistantSlice';
 import axios from 'axios';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
 export default function SupportAssistantPage() {
-  const [supportAssistants, setSupportAssistants] = useState([]);
+  const dispatch = useAppDispatch();
+  const profiles = useAppSelector((state) => state.supportAssistants.profiles);
+  const isLoading = useAppSelector((state) => state.developers.isLoading);
+  const error = useAppSelector((state) => state.developers.error);
+
+  const[loading, setLoading] = useState(false);
+  console.log(loading)
+  
   useEffect(() => {
-    apiCall()
-  }, [])
-
-  const apiCall = async () => {
-    const apiEndpoint = `${API_URL}/user/getUsers/supportAssistants`;
-
-    try {
-      const response = await axios.get(`${apiEndpoint}`);
-      if (response?.data?.status) {
-        console.log("respone", response?.data?.data)
-        setSupportAssistants(response?.data?.data);
-      } else {
-        console.error('Error');
-      }
-    } catch (error) {
-      toast.error(error?.response?.data?.msg, {
-        position: toast.POSITION.BOTTOM_RIGHT,
-      });
-      console.error('Error fetching profiles:', error);
-    }
-  }
+    setLoading(true);
+    dispatch(fetchSupportAssistants());
+    setLoading(false);
+  }, [dispatch]);
 
   return (
     <>
@@ -45,8 +38,8 @@ export default function SupportAssistantPage() {
       </div>
       <div className="two-col-grid">
         {
-          supportAssistants.length > 0 ?
-            supportAssistants.map((assistant, index) => (
+          profiles.length > 0 ?
+            profiles.map((assistant, index) => (
               <ProfileCard
                 key={index}
                 name={assistant.fullName}
